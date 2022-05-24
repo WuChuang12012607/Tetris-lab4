@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
-
-
+/**
+ * @author 屹宁 武创
+ */
 public class Operation {
 
-    int x;//这个位置至少为1
-    int y;//这个问题需要我们解决
-    Color[][] mapcolor = new Color[][]{{Color.black}};
+    int x;
+    int y;
     Gameframe gameframe;
     JButton left;
     JButton right;
@@ -26,7 +26,7 @@ public class Operation {
     JButton returnbutton;
     JButton restart;
     Boolean newBegin=true;
-    Shape[] Shape = new Shape[]{
+    Shape[] nShape = new Shape[]{
             //L
             new Shape(new int[]{-1,0,1,1},new int[]{0,0,0,1}),
             new Shape(new int[]{-1,0,0,0},new int[]{1,1,0,-1}),
@@ -66,7 +66,6 @@ public class Operation {
 
     PrintWriter printWriter;
     JButton over;
-    passwordpanel passwordpanel;
     Shape preshape;
     Shape tempshape;
     Random random= new Random();
@@ -84,11 +83,12 @@ public class Operation {
         tempshape=preshape;
         int b = random.nextInt(8);
         tempcolor= color[b];
-        if(record==0){int a = random.nextInt(21);
-            shape=new Shape(Shape[a]);
+        int aA=21;
+        if(record==0){int a = random.nextInt(aA);
+            shape=new Shape(nShape[a]);
         }else{
             shape=tempshape;
-        } preshape = new Shape(Shape[a2]);
+        } preshape = new Shape(nShape[a2]);
         record++;
     }
 public void setspeed(int speed){
@@ -96,7 +96,7 @@ public void setspeed(int speed){
 }
 
     public void setscore(int score){
-        this.score=score;
+        Operation.score =score;
     }
 
 
@@ -148,7 +148,7 @@ public void setspeed(int speed){
                 gameframe.setVisible(false);gameframe.dispose();
                 Levelpanel.username=username;
                Levelpanel levelpanel = new Levelpanel();
-                levelpanel.username=username;
+                Levelpanel.username =username;
                 levelpanel.setVisible(true);
             }
         });
@@ -162,6 +162,7 @@ public void setspeed(int speed){
                 }
                 else{ timer.stop();
                 newBegin=true;
+                new Pausepanel().setVisible(true);
                 }
             }
         });
@@ -170,7 +171,7 @@ public void setspeed(int speed){
             public void actionPerformed(ActionEvent e) {
                 gameframe.requestFocus();
                 timer.stop();
-                whethertosave whethertosave = new whethertosave();
+                Whethertosave whethertosave = new Whethertosave();
                 whethertosave.username=username;
                 for(int i=0;i<savemap.length;i++){
                     for (int j=0;j<savemap[0].length;j++){
@@ -218,7 +219,7 @@ public void setspeed(int speed){
         }
         if(checksol==true){ this.x=x+1;}
     }
-    //savecolor
+
     public void dowm(){
 
         boolean checksol = true;
@@ -232,11 +233,11 @@ public void setspeed(int speed){
                     deletemap();
                     //scoreadd();
                 }
-                if(Gameover()==true){
+                if(gameover()==true){
                     timer.stop();
                     newgame();
                     gameframe.getGamepanel().repaint();
-                    gameoverframe gameoverframe = new gameoverframe();
+                    Gameoverframe gameoverframe = new Gameoverframe();
                     gameoverframe.score = score;
                    gameoverframe.setVisible(true);
                 }//这个部分同样有点问题
@@ -244,9 +245,11 @@ public void setspeed(int speed){
         }
         if(checksol==true){ this.y=y+1;}
     }
-    public boolean Gameover(){
+    public boolean gameover(){
         boolean judge= false;
-        for(int i=0;i<10;i++){
+        int col=10;
+        int colN=0;
+        for(int i=colN;i<col;i++){
             if(savemap[i][2]!=0){
                 judge=true;
             }
@@ -273,13 +276,15 @@ public void setspeed(int speed){
             point.x=-point.y;
             point.y=temp;}
     }
-    int[] needtodelete = new int[20];//这个部分需要改进
+    int[] needtodelete = new int[20];
     boolean testdeletemap(){
     boolean judge = false;
     boolean checkempty = false;
-    for(int i=19;i>=2;i--){
+    int row=19;int rowN=2;
+    int col=10;int colN=0;
+    for(int i=row;i>=rowN;i--){
         judge=false;
-        for(int j=0;j<10;j++){
+        for(int j=colN;j<col;j++){
             if(savemap[j][i]==0){
                 judge=true;
                 break;
@@ -294,9 +299,11 @@ public void setspeed(int speed){
     }
     return checkempty;
     }
+    int row=19;int rowN=2;
+    int col=10;int colN=0;
     void deletemap(){
-        for(int i=19;i>=2;i--) {
-            for (int j = 0; j < 10; j++) {
+        for(int i=row;i>=rowN;i--) {
+            for (int j = colN; j <col; j++) {
                 savemap[j][i+ needtodelete[i]] = savemap[j][i];
 
             }
@@ -304,9 +311,9 @@ public void setspeed(int speed){
 
 
         if (needtodelete[1] == 1) {
-            this.score = score + 100* needtodelete[1];//这个问题需要解决
+            score = score + 100* needtodelete[1];
         }else if (needtodelete[1] > 1) {
-            this.score = score + 120*needtodelete[1];//同样
+            score = score + 120*needtodelete[1];
         }
         }
 
@@ -352,7 +359,7 @@ public void setspeed(int speed){
         return sol;
     }
     public void savemap(){
-        for(Point point : shape.points){//这部分需要更好的推敲切记
+        for(Point point : shape.points){
             savemap[point.x+x][point.y+y+2]=savecolor(tempcolor);
         }
     }
@@ -365,9 +372,9 @@ public void setspeed(int speed){
             e.printStackTrace();
         }
         printWriter = new PrintWriter(file);
-        for (int i = 0; i < savemap.length; i++) {
+        for (int[] ints : savemap) {
             for (int j = 0; j < savemap[0].length; j++) {
-                printWriter.print(savemap[i][j]);
+                printWriter.print(ints[j]);
             }
         }
         printWriter.close();
@@ -378,7 +385,7 @@ public void setspeed(int speed){
                 savemap[i][j] = 0;
             }
         }
-        shape=Shape[0];
+        shape=nShape[0];
         tempcolor=Color.WHITE;
     }
 
@@ -401,9 +408,6 @@ class Shape{
     }
     public int getxsl(){
         return xs.length;
-    }
-    public int getysl(){
-        return ys.length;
     }
 
     Shape(Shape shape){

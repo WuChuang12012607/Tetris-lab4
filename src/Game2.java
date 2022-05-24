@@ -20,11 +20,10 @@ class Gamepanel2 extends JPanel {
             if(operation2.tempcolor==Color.WHITE){
                 g.setColor(Color.WHITE);
                 g.fillRect((point.x+operation2.x)*24,(point.y+operation2.y)*24,24,24);
-                //   g.drawImage(new ImageIcon("block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
             }else{ g.setColor(operation2.tempcolor);
                 g.fillRect((point.x+operation2.x)*24,(point.y+operation2.y)*24,24,24);
                 g.drawImage(new ImageIcon("pics/block3.png").getImage(),(point.x+operation2.x)*24,(point.y+operation2.y)*24,24,24,null);
-                String temp = String.valueOf(operation2.score);
+                String temp = String.valueOf(Operation2.score);
                 g.setColor(Color.black);
                 g.setFont(new Font("黑体",Font.PLAIN,25));
                 g.drawString(temp,300,70);
@@ -33,12 +32,15 @@ class Gamepanel2 extends JPanel {
         for(Point point : operation2.preshape.points){
             g.fillRect((point.x+3)*24,(point.y+20)*24,24,24);}
 
-        for(int i =19;i>=2;i--){
-            for(int j=0;j<10;j++){
+        int row=19;
+        int rowN=2;
+        int column=10;
+        for(int i =row;i>=rowN;i--){
+            for(int j=0;j<column;j++){
                 if(operation2.savemap[j][i]!=0){
                     g.setColor(operation2.color[operation2.savemap[j][i]-1]);
                     g.fillRect((j)*24,(i-2)*24,24,24);
-                    g.drawImage(new ImageIcon("pics/block3.png").getImage(),(j)*24,(i-2)*24,24,24,null);//这个部分的j，i同样值得思考！！！
+                    g.drawImage(new ImageIcon("pics/block3.png").getImage(),(j)*24,(i-2)*24,24,24,null);
                 }
             }
         }
@@ -56,14 +58,6 @@ class Staticpanel2 extends  JPanel{
     Staticpanel2(Operation2 operation2){
         this.operation2 =operation2;
         setBounds(0,0,615,930);
-
-
-
-
-
-
-
-
         setLayout(null);
 
         JButton left = operation2.left;
@@ -90,14 +84,14 @@ class Staticpanel2 extends  JPanel{
         add(returnbutton);
         add(restart);
         add(restart2);
-        ImageIcon imageIcon1 = new ImageIcon("pics/up.png"); // Icon由图片文件形成
+        ImageIcon imageIcon1 = new ImageIcon("pics/up.png");
         ImageIcon imageIcon2 = new ImageIcon("pics/down.png");
         ImageIcon imageIcon3 = new ImageIcon("pics/left.png");
         ImageIcon imageIcon4 = new ImageIcon("pics/right.png");
         ImageIcon imageIcon5 = new ImageIcon("pics/Start_Pause.png");
         ImageIcon imageIcon6 = new ImageIcon("pics/返回.png");
         ImageIcon imageIcon7 = new ImageIcon("pics/quit.png");
-        Image image1 = imageIcon1.getImage(); // 但这个图片大小可能不适合做Icon
+        Image image1 = imageIcon1.getImage();
         Image image2 = imageIcon2.getImage();
         Image image3 = imageIcon3.getImage();
         Image image4 = imageIcon4.getImage();
@@ -111,7 +105,6 @@ class Staticpanel2 extends  JPanel{
         Image smallImage5 = image5.getScaledInstance(88,48,Image.SCALE_FAST);
         Image smallImage6 = image6.getScaledInstance(88,48,Image.SCALE_FAST);
         Image smallImage7 = image7.getScaledInstance(88,48,Image.SCALE_FAST);
-        // 再由修改后的Image来生成合适的Icon
         ImageIcon smallIcon1 = new ImageIcon(smallImage1);
         ImageIcon smallIcon2 = new ImageIcon(smallImage2);
         ImageIcon smallIcon3 = new ImageIcon(smallImage3);
@@ -119,7 +112,6 @@ class Staticpanel2 extends  JPanel{
         ImageIcon smallIcon5 = new ImageIcon(smallImage5);
         ImageIcon smallIcon6 = new ImageIcon(smallImage6);
         ImageIcon smallIcon7 = new ImageIcon(smallImage7);
-        // 最后设置它为按钮的图片
         rotation.setIcon(smallIcon1);
         dowm.setIcon(smallIcon2);
         left.setIcon(smallIcon3);
@@ -138,26 +130,29 @@ class Staticpanel2 extends  JPanel{
     @Override
     public void paintComponent(Graphics g){
         g.setColor(new Color(0,0,0,30));
-        g.fillRect(111,520,200,102);//下一个框
-        g.fillRect(355,187,130,330);//荣誉榜
-        g.fillRect(111,85,240,432);//游戏运行框
-        g.fillRect(313,520,174,102);//速度框
+        g.fillRect(111,520,200,102);
+        g.fillRect(355,187,130,330);
+        g.fillRect(111,85,240,432);
+        g.fillRect(313,520,174,102);
         g.setColor(new Color(2,2,2,30));
-        g.fillRect(355,85,130,100);//得分框
+        g.fillRect(355,85,130,100);
 
         g.setColor(Color.black);
         g.drawRect(111,85,241,433);
         //这里缺一个边框，但是我偏不想加了。
         g.setFont(new Font("黑体",Font.PLAIN,25));
         g.setColor(Color.black);
-        g.drawString("得分：",367,120);//得分位置
-        g.drawString("下一个",111,550);//下一个位置
-        g.drawString("荣誉榜：",367,222);//荣誉榜位置
-        g.drawString("速度：",325,555);//速度
+        g.drawString("得分：",367,120);
+        g.drawString("下一个",111,550);
+        g.drawString("荣誉榜：",367,222);
+        g.drawString("速度：",325,555);
+        g.drawString("200ms/格" ,376,590);
     }
 }
 
-
+/**
+ * @author 屹宁
+ */
 public class Game2{
     public static void main(String[] args) {
 
@@ -169,7 +164,4 @@ public class Game2{
         operation2.setGameframe(frame2);
         frame2.setVisible(true);
 
-        @SuppressWarnings("unused")
-        int musicOpenLab = 1;
-    }
-}
+}}
