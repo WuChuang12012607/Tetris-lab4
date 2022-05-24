@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author 屹宁 武创
+ */
 public class Gameframe2 extends JFrame {
 
 
@@ -13,7 +16,7 @@ public class Gameframe2 extends JFrame {
         this.gamepanel2 = gamepanel2;
         this.operation2 = operation2;
         mainpane = getLayeredPane();
-        setBounds(100, 50, 600, 900);
+        setBounds(100, 50, 610, 935);
         setTitle("TETRIS");
         setResizable(false);
         setLayout(null);

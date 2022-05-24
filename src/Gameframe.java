@@ -1,11 +1,9 @@
-import javafx.scene.layout.Background;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
-//首先，我们需要三个部分，Gamepanel，Gameframe ，Staticpanel,Operation以及Gamedata
+/**
+ * @author 屹宁/首先，我们需要三个部分，Gamepanel，Gameframe ，Staticpanel,Operation以及Gamedata
+ */
 public class Gameframe extends JFrame {
 
 
@@ -19,7 +17,7 @@ public class Gameframe extends JFrame {
         this.gamepanel = gamepanel;
         this.operation = operation;
         mainpane = getLayeredPane();
-        setBounds(100, 50, 600, 900);
+        setBounds(100, 50, 610, 935);
         setTitle("TETRIS");
         setResizable(false);
         setLayout(null);

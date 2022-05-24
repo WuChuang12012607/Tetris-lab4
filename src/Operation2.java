@@ -4,16 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Random;
 
-public class Operation2 {//现在是在做不同的模式
-    int x;//这个位置至少为1
-    int y;//这个问题需要我们解决
-    Color[][] mapcolor = new Color[][]{{Color.black}};
+/**
+ * @author 屹宁
+ * //现在是在做不同的模式
+ *     int x;//这个位置至少为1
+ *     int y;//这个问题需要我们解决
+ */
+public class Operation2 {
+    int x;
+    int y;
     Gameframe2 gameframe2;
     JButton left;
     JButton right;
@@ -23,7 +24,7 @@ public class Operation2 {//现在是在做不同的模式
     JButton returnbutton;
     JButton restart;
     Boolean newBegin=true;
-    Shape[] Shape = new Shape[]{
+    Shape[] aShape = new Shape[]{
             //L
             new Shape(new int[]{-1,0,1,1},new int[]{0,0,0,1}),
             new Shape(new int[]{-1,0,0,0},new int[]{1,1,0,-1}),
@@ -89,9 +90,7 @@ public class Operation2 {//现在是在做不同的模式
     public Color[] color = new Color[]{Color.green, Color.red, Color.orange, Color.blue, Color.cyan, Color.yellow, Color.magenta, Color.gray};
     public Color tempcolor;
 
-    PrintWriter printWriter;
     JButton over;
-    passwordpanel passwordpanel;
     Shape preshape;
     Shape tempshape;
     Random random= new Random();
@@ -100,7 +99,7 @@ public class Operation2 {//现在是在做不同的模式
 
     int speed=200;
     public void setscore(int score){
-        this.score=score;
+        Operation2.score =score;
     }
     public void newShape(){
         this.x=random.nextInt(5)+3;
@@ -110,11 +109,12 @@ public class Operation2 {//现在是在做不同的模式
         tempshape=preshape;
         int b = random.nextInt(8);
         tempcolor= color[b];
-        if(record==0){int a = random.nextInt(42);
-            shape=new Shape(Shape[a]);
+        int aA=42;
+        if(record==0){int a = random.nextInt(aA);
+            shape=new Shape(aShape[a]);
         }else{
             shape=tempshape;
-        } preshape = new Shape(Shape[a2]);
+        } preshape = new Shape(aShape[a2]);
         record++;
     }
 
@@ -130,111 +130,81 @@ public class Operation2 {//现在是在做不同的模式
         //shape = new  Shape(Shape[0]);//这部分啥意思有待考虑清楚
         savemap =new int[10][20];
         final int[] score = {0};
-        left.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                left();gameframe2.requestFocus();
-                gameframe2.getGamepanel2().repaint();
-            }
+        left.addActionListener(e -> {
+            left();gameframe2.requestFocus();
+            gameframe2.getGamepanel2().repaint();
         });
-        right.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                right();gameframe2.requestFocus();
-                gameframe2.getGamepanel2().repaint();
-            }
+        right.addActionListener(e -> {
+            right();gameframe2.requestFocus();
+            gameframe2.getGamepanel2().repaint();
         });
-        down.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dowm();gameframe2.requestFocus();
-                gameframe2.getGamepanel2().repaint();
-            }
+        down.addActionListener(e -> {
+            dowm();gameframe2.requestFocus();
+            gameframe2.getGamepanel2().repaint();
         });
-        rotation.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                turn();gameframe2.requestFocus();
-                gameframe2.getGamepanel2().repaint();
-            }
+        rotation.addActionListener(e -> {
+            turn();gameframe2.requestFocus();
+            gameframe2.getGamepanel2().repaint();
         });
         returnbutton = new JButton();
-        returnbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameframe2.requestFocus();
-                gameframe2.setVisible(false);gameframe2.dispose();
-                Levelpanel.username=username;
-                Levelpanel levelpanel = new Levelpanel();
-                levelpanel.username=username;
-                levelpanel.setVisible(true);
+        returnbutton.addActionListener(e -> {
+            gameframe2.requestFocus();
+            gameframe2.setVisible(false);gameframe2.dispose();
+            Levelpanel.username=username;
+            Levelpanel levelpanel = new Levelpanel();
+            Levelpanel.username =username;
+            levelpanel.setVisible(true);
 
-            }
         });
-        startstop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameframe2.requestFocus();
-                if(newBegin==true){
-                    timer.start();
-                    newBegin=false;
-                }
-                else{ timer.stop();
-                    newBegin=true;
-                }
+        startstop.addActionListener(e -> {
+            gameframe2.requestFocus();
+            if(newBegin){
+                timer.start();
+                newBegin=false;
             }
-        });
-        over.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameframe2.requestFocus();
-                timer.stop();
-                /*whethertosave whethertosave = new whethertosave();
-                whethertosave.username=username;
-                for(int i=0;i<savemap.length;i++){
-                    for (int j=0;j<savemap[0].length;j++){
-                        whethertosave.savemap[i][j]=savemap[i][j];
-                    }
-                }whethertosave.setVisible(true);*/
-                newgame();
-                record=0;
-                newBegin=true;
-                gameoverframe gameoverframe = new gameoverframe();
-                gameoverframe.score = score[0];
-                gameoverframe.setVisible(true);
-                gameframe2.getGamepanel2().repaint();
-            }
-        });
-        restart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                newgame();
-                record=0;
-                setscore(0);
-                gameframe2.getGamepanel2().repaint();
+            else{ timer.stop();new Pausepanel().setVisible(true);
                 newBegin=true;
             }
+        });
+        over.addActionListener(e -> {
+            gameframe2.requestFocus();
+            timer.stop();
+            newgame();
+            record=0;
+            newBegin=true;
+            Gameoverframe gameoverframe = new Gameoverframe();
+            gameoverframe.score = score[0];
+            gameoverframe.setVisible(true);
+            gameframe2.getGamepanel2().repaint();
+        });
+        restart.addActionListener(e -> {
+            newgame();
+            record=0;
+            setscore(0);
+            gameframe2.getGamepanel2().repaint();
+            newBegin=true;
         });
     }
     public void left(){
         boolean checksol = true;
         for(Point point :shape.points){
-            if(point.x+x-1<0 || point.x+x-1>9  ||  savemap[point.x+x-1][point.y+y+2]!=0){
-                checksol=false;
+            if (point.x + x - 1 < 0 || point.x + x - 1 > 9 || savemap[point.x + x - 1][point.y + y + 2] != 0) {
+                checksol = false;
+                break;
             }
         }
-        if(checksol==true){ this.x=x-1;}
+        if(checksol){ this.x=x-1;}
     }
     public void right(){
         boolean checksol = true;
         for(Point point :shape.points){
-            if(point.x+x+1<0 || point.x+x+1>9 ||  savemap[point.x+x+1][point.y+y+2]!=0 ){
-                checksol=false;
+            if (point.x + x + 1 < 0 || point.x + x + 1 > 9 || savemap[point.x + x + 1][point.y + y + 2] != 0) {
+                checksol = false;
+                break;
             }
         }
-        if(checksol==true){ this.x=x+1;}
+        if(checksol){ this.x=x+1;}
     }
-    //savecolor
     public void dowm(){
 
         boolean checksol = true;
@@ -244,35 +214,38 @@ public class Operation2 {//现在是在做不同的模式
                 newShape();
                 checksol=false;
 
-                if(testdeletemap()==true){
+                if(testdeletemap()){
                     deletemap();
                     //scoreadd();
                 }
-                if(Gameover()==true){
+                if(Gameover()){
                     timer.stop();
                     newgame();
                     gameframe2.getGamepanel2().repaint();
-                    gameoverframe gameoverframe = new gameoverframe();
+                    Gameoverframe gameoverframe = new Gameoverframe();
                     gameoverframe.score = score;
                     gameoverframe.setVisible(true);
                 }//这个部分同样有点问题
             }
         }
-        if(checksol==true){ this.y=y+1;}
+        if(checksol){ this.y=y+1;}
     }
+    int col=10;
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     public boolean Gameover(){
         boolean judge= false;
-        for(int i=0;i<10;i++){
-            if(savemap[i][2]!=0){
-                judge=true;
+        for(int i=0;i<col;i++){
+            if (savemap[i][2] != 0) {
+                judge = true;
+                break;
             }
         }
         return judge;
     }
     public void turn(){//这部分需要观察是否可以进行改进
-        int temp=0;
-        int checkxaxis=0;
-        int checkyaxis=0;
+        int temp;
+        int checkxaxis;
+        int checkyaxis;
         for(Point point :shape.points){
             checkxaxis=-point.y;
             checkyaxis=point.x;
@@ -289,13 +262,15 @@ public class Operation2 {//现在是在做不同的模式
             point.x=-point.y;
             point.y=temp;}
     }
-    int[] needtodelete = new int[20];//这个部分需要改进
+    int[] needtodelete = new int[20];
     boolean testdeletemap(){
-        boolean judge = false;
+        boolean judge;
         boolean checkempty = false;
-        for(int i=19;i>=2;i--){
+        int row=19;int col =10;
+        int rowN=2;int colN=0;
+        for(int i=row;i>=rowN;i--){
             judge=false;
-            for(int j=0;j<10;j++){
+            for(int j=colN;j<col;j++){
                 if(savemap[j][i]==0){
                     judge=true;
                     break;
@@ -311,8 +286,10 @@ public class Operation2 {//现在是在做不同的模式
         return checkempty;
     }
     void deletemap(){
-        for(int i=19;i>=2;i--) {
-            for (int j = 0; j < 10; j++) {
+        int row = 19;int rowN=2;
+        int col = 10;int colN=0;
+        for(int i=row;i>=rowN;i--) {
+            for (int j = colN; j <col; j++) {
                 savemap[j][i+ needtodelete[i]] = savemap[j][i];
 
             }
@@ -320,9 +297,9 @@ public class Operation2 {//现在是在做不同的模式
 
 
         if (needtodelete[1] == 1) {
-            this.score = score + 100* needtodelete[1];//这个问题需要解决
+            score = score + 100* needtodelete[1];
         }else if (needtodelete[1] > 1) {
-            this.score = score + 120*needtodelete[1];//同样
+            score = score + 120*needtodelete[1];
         }
     }
 
@@ -334,10 +311,6 @@ public class Operation2 {//现在是在做不同的模式
         }
     });
 
-    public void setScorepanel(Gameframe2 gameframe2){
-        this.gameframe2=gameframe2;
-
-    }
     public void setGameframe(Gameframe2 gameframe2){
         this.gameframe2 =gameframe2;
         gameframe2.setFocusable(true);
@@ -368,33 +341,18 @@ public class Operation2 {//现在是在做不同的模式
         return sol;
     }
     public void savemap(){
-        for(Point point : shape.points){//这部分需要更好的推敲切记
+        for(Point point : shape.points){
             savemap[point.x+x][point.y+y+2]=savecolor(tempcolor);
         }
     }
 
-    public void savethegame() throws FileNotFoundException {
-        File file = new File(username+".txt",username +1+".txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        printWriter = new PrintWriter(file);
-        for (int i = 0; i < savemap.length; i++) {
-            for (int j = 0; j < savemap[0].length; j++) {
-                printWriter.print(savemap[i][j]);
-            }
-        }
-        printWriter.close();
-    }
     public void newgame() {
         for (int i = 0; i < savemap.length; i++) {
             for (int j = 0; j < savemap[0].length; j++) {
                 savemap[i][j] = 0;
             }
         }
-        shape=Shape[0];
+        shape=aShape[0];
         tempcolor=Color.WHITE;
     }
 

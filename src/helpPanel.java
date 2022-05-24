@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-class helpPanel extends JFrame implements ActionListener {
+class HelpPanel extends JFrame implements ActionListener {
     Boolean help=true;
     Boolean information= true;
 
@@ -17,7 +17,7 @@ class helpPanel extends JFrame implements ActionListener {
     JTextArea introductionforauthor = new JTextArea("         Yi Ning 12012808"+"                Wu Chuang 12012607");
 
 
-    public  helpPanel(){
+    public  HelpPanel(){
         setSize(600,900);
         helppanel = getLayeredPane();
         setResizable(false);
@@ -47,33 +47,30 @@ class helpPanel extends JFrame implements ActionListener {
         introductionforauthor.setBounds(50,700,500,120);
         introductionforauthor.setOpaque(true);
         bt23.addActionListener(this);
-        gamehelp.setForeground(Color.black); //设置组件的背景色
-        gamehelp.setFont(new Font("楷体",Font.BOLD,25)); //修改字体样式
-        gamehelp.setLineWrap(true);//自动换行
-        gamehelp.setBackground(new Color(255,255,255,70)); //设置按钮背景色
-        introductionforauthor.setForeground(Color.BLACK); //设置组件的背景色
-        introductionforauthor.setFont(new Font("楷体",Font.BOLD,25)); //修改字体样式
-        introductionforauthor.setLineWrap(true);//自动换行
-        introductionforauthor.setBackground(new Color(255,255,255,70)); //设置按钮背景色
-        introductionforauthor.setForeground(Color.black); //设置组件的背景色
-        ImageIcon imageIcon1 = new ImageIcon("pics/return.png"); // Icon由图片文件形成
+        gamehelp.setForeground(Color.black);
+        gamehelp.setFont(new Font("楷体",Font.BOLD,25));
+        gamehelp.setLineWrap(true);
+        gamehelp.setBackground(new Color(255,255,255,70));
+        introductionforauthor.setForeground(Color.BLACK);
+        introductionforauthor.setFont(new Font("楷体",Font.BOLD,25));
+        introductionforauthor.setLineWrap(true);
+        introductionforauthor.setBackground(new Color(255,255,255,70));
+        introductionforauthor.setForeground(Color.black);
+        ImageIcon imageIcon1 = new ImageIcon("pics/return.png");
         ImageIcon imageIcon2 = new ImageIcon("pics/help.png");
         ImageIcon imageIcon3 = new ImageIcon("pics/author.png");
-        Image image1 = imageIcon1.getImage(); // 但这个图片大小可能不适合做Icon
+        Image image1 = imageIcon1.getImage();
         Image image2 = imageIcon2.getImage();
         Image image3 = imageIcon3.getImage();
         Image smallImage1 = image1.getScaledInstance(200,100,Image.SCALE_FAST);
         Image smallImage2 = image2.getScaledInstance(200,100,Image.SCALE_FAST) ;
         Image smallImage3 = image3.getScaledInstance(200,100,Image.SCALE_FAST);
-        // 再由修改后的Image来生成合适的Icon
         ImageIcon smallIcon1 = new ImageIcon(smallImage1);
         ImageIcon smallIcon2 = new ImageIcon(smallImage2);
         ImageIcon smallIcon3 = new ImageIcon(smallImage3);
-        // 最后设置它为按钮的图片
         bt21.setIcon(smallIcon1);
         bt22.setIcon(smallIcon2);
         bt23.setIcon(smallIcon3);
-
         setResizable(false);
         setVisible(true);
         setLocationRelativeTo(null);

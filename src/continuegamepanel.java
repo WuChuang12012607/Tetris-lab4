@@ -8,26 +8,40 @@ import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 
-public class continuegamepanel extends JFrame {//我们在这个部分来讨论一下如何把老用户的保存文档输出出来
+class ContinueGamepanel extends JFrame {
     public  static String username;
 
+
     public void setUsername(String username) {
-        this.username = username;
+        ContinueGamepanel.username = username;
     }
 
     File file;
     JButton[] bt;
     JPanel panel ;
     Scanner scanner;
+    Container main;
+    JButton bt0;
     int[][] savemap= new int[10][20];
-    continuegamepanel(){
+    ContinueGamepanel(){
+        bt0 = new JButton("return");
+        bt0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Panel.username=username;
+                Panel panel = new Panel();
+                panel.setVisible(true);
+                dispose();
+            }
+        });
         this.setIconImage(new ImageIcon("pics/Tetris.png").getImage());
         setTitle("Tetris");
         setTitle("是否继续游戏？");
         File file = new File(username+".txt");
         File[] file2 = file.listFiles();
-        panel = new JPanel();panel.setBounds(0,0,250,250);
-        setSize(250, 250);
+        panel = new JPanel();panel.setBounds(0,0,250,300);
+        setSize(250, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         panel.setLayout(new GridLayout(21,0,10,10));
@@ -35,7 +49,7 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
         for(int i=0;i<bt.length;i++){
             int k=i+1;
             bt[i]=new JButton(""+k);
-            bt[i].setBounds(10,20*i,180,70);
+            bt[i].setBounds(10,20*i,180,20);
             panel.add(bt[i]);
             int j = i;
             bt[i].addActionListener(new ActionListener() {
@@ -71,7 +85,7 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
                         operation.setGameframe(frame);
                         Random random = new Random();
                         int a = random.nextInt(7);
-                        operation.shape=operation.Shape[a];//就这样吧。
+                        operation.shape=operation.nShape[a];//就这样吧。
                         frame.setVisible(true);
                         dispose();
                     } catch (FileNotFoundException fileNotFoundException) {
@@ -81,10 +95,24 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
             });
         }
         JScrollPane scrollPane = new JScrollPane(
+
                 panel,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
+        JPanel panel2 = new JPanel();
+        panel2.setBounds(0,0,500,500);
+        bt0.setBounds(10, 20*bt.length,100,20);
+        scrollPane.setBounds(0,100,300,300);
+
+        main = getLayeredPane();
+        setContentPane(scrollPane);
+        for(int i=0;i<bt.length;i++){
+           main.add(bt[i],new Integer(1));
+        }
+        main.add(panel2,new Integer(0));
+        main.add(scrollPane,new Integer(1));
+        main.add(bt0,new Integer(1));
         setContentPane(scrollPane);
         setVisible(true);
 
