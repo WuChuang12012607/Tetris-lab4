@@ -56,14 +56,6 @@ class Staticpanel2 extends  JPanel{
     Staticpanel2(Operation2 operation2){
         this.operation2 =operation2;
         setBounds(0,0,615,930);
-
-
-
-
-
-
-
-
         setLayout(null);
 
         JButton left = operation2.left;
@@ -154,6 +146,7 @@ class Staticpanel2 extends  JPanel{
         g.drawString("下一个",111,550);//下一个位置
         g.drawString("荣誉榜：",367,222);//荣誉榜位置
         g.drawString("速度：",325,555);//速度
+        g.drawString("200ms/格" ,376,590);
     }
 }
 

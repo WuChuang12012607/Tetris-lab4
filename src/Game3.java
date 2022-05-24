@@ -139,9 +139,11 @@ class Staticpanel3 extends  JPanel{
         g.setFont(new Font("黑体",Font.PLAIN,25));
         g.setColor(Color.black);
         g.drawString("得分：",367,120);//得分位置
+
         g.drawString("下一个",111,550);//下一个位置
         g.drawString("荣誉榜：",367,222);//荣誉榜位置
         g.drawString("速度：",325,555);//速度
+        g.drawString("100ms/格" ,376,590);
     }
 }
 public class Game3 {

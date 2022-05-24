@@ -153,6 +153,7 @@ class Staticpanel extends  JPanel{
         g.drawString("下一个",111,550);//下一个位置
         g.drawString("荣誉榜：",367,222);//荣誉榜位置
     g.drawString("速度：",325,555);//速度
+    g.drawString("200ms/格" ,376,590);
     }
 }
 

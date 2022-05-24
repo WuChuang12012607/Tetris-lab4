@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
     JButton bt11 ;
     JButton bt12 ;
     JButton bt14 ;
-    JButton bt15 ;
+
 
 
     public Panel() {
@@ -30,7 +30,7 @@ import java.awt.event.ActionListener;
         bt11 = new JButton("New Game");
         bt12 = new JButton("Continue Game");
         bt14 = new JButton("Reference");
-        bt15 = new JButton("Quit");
+
         setSize(810, 1000);
 
         mainpanel.setSize(810, 1000);
@@ -48,8 +48,7 @@ import java.awt.event.ActionListener;
         mainpanel.add(bt14,new Integer(1));
         bt14.setBounds(295, 554, 220, 100);
         bt14.addActionListener(this);
-        mainpanel.add(bt15,new Integer(1));
-        bt15.setBounds(295, 668, 220, 100);
+
         ImageIcon imageIcon1 = new ImageIcon("pics/newgame.png"); // Icon由图片文件形成
         ImageIcon imageIcon2 = new ImageIcon("pics/continue.png");
 
@@ -74,7 +73,7 @@ import java.awt.event.ActionListener;
         bt11.setIcon(smallIcon1);
         bt12.setIcon(smallIcon2);
         bt14.setIcon(smallIcon4);
-        bt15.setIcon(smallIcon5);
+
 
         setResizable(false);
         setLocationRelativeTo(null);
@@ -101,8 +100,6 @@ import java.awt.event.ActionListener;
             continuegamepanel continuegamepanel2 = new continuegamepanel();
 
             continuegamepanel2.setVisible(true);
-            dispose();
-        }else if(e.getSource()==bt15){
             dispose();
         }
 

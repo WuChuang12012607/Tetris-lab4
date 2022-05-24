@@ -162,6 +162,7 @@ public void setspeed(int speed){
                 }
                 else{ timer.stop();
                 newBegin=true;
+                new pausepanel().setVisible(true);
                 }
             }
         });
