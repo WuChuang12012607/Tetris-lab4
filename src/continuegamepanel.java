@@ -85,7 +85,7 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
-
+        setContentPane(scrollPane);
         setVisible(true);
 
     }
