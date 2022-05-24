@@ -34,6 +34,7 @@ public class whethertosave extends JFrame {
          panel.setBounds(0,0,500,300);
          panel.setLayout(null);
          setLocationRelativeTo(null);
+         repaint();
          setSize(500,300);
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          setLocationRelativeTo(null);
@@ -41,8 +42,8 @@ public class whethertosave extends JFrame {
 
 
          main.add(panel,new Integer(0));
-         bt1 = new JButton("是");main.add(bt1,new Integer(1));panel.add(bt1);
-         bt2 = new JButton("否");main.add(bt2,new Integer(1));panel.add(bt2);
+         bt1 = new JButton("否");main.add(bt1,new Integer(1));panel.add(bt1);
+         bt2 = new JButton("是");main.add(bt2,new Integer(1));panel.add(bt2);
          bt1.setBounds(30,30,90,60);
          bt2.setBounds(300,30,90,60);
 
@@ -81,8 +82,9 @@ public class whethertosave extends JFrame {
              }
          });
      }
+
      @Override
      public void paint(Graphics g){
-         g.drawString("是否继续游戏",70,30);
+         g.drawString("是否存档游戏",200,80);
      }
 }

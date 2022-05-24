@@ -19,7 +19,7 @@ public class Gameframe extends JFrame {
         this.gamepanel = gamepanel;
         this.operation = operation;
         mainpane = getLayeredPane();
-        setBounds(100, 50, 600, 900);
+        setBounds(100, 50, 610, 935);
         setTitle("TETRIS");
         setResizable(false);
         setLayout(null);
