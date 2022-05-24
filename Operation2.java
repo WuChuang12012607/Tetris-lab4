@@ -21,6 +21,7 @@ public class Operation2 {//现在是在做不同的模式
     JButton down;
     JButton startstop;
     JButton returnbutton;
+    JButton restart;
     Boolean newBegin=true;
     Shape[] Shape = new Shape[]{
             //L
@@ -97,7 +98,10 @@ public class Operation2 {//现在是在做不同的模式
     public String username;
     static int record =0;
 
-    int speed=0;
+    int speed=200;
+    public void setscore(int score){
+        this.score=score;
+    }
     public void newShape(){
         this.x=random.nextInt(5)+3;
         this.y=-1;
@@ -121,10 +125,11 @@ public class Operation2 {//现在是在做不同的模式
         down= new JButton();
         startstop = new JButton();
         over =new JButton();
+        restart = new JButton();
         newShape();
         //shape = new  Shape(Shape[0]);//这部分啥意思有待考虑清楚
         savemap =new int[10][20];
-        int score = 0;
+        final int[] score = {0};
         left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -174,7 +179,7 @@ public class Operation2 {//现在是在做不同的模式
                     timer.start();
                     newBegin=false;
                 }
-                else{ timer.stop();
+                else{ timer.stop();new pausepanel().setVisible(true);
                     newBegin=true;
                 }
             }
@@ -194,7 +199,20 @@ public class Operation2 {//现在是在做不同的模式
                 newgame();
                 record=0;
                 newBegin=true;
+                gameoverframe gameoverframe = new gameoverframe();
+                gameoverframe.score = score[0];
+                gameoverframe.setVisible(true);
                 gameframe2.getGamepanel2().repaint();
+            }
+        });
+        restart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newgame();
+                record=0;
+                setscore(0);
+                gameframe2.getGamepanel2().repaint();
+                newBegin=true;
             }
         });
     }
@@ -234,7 +252,9 @@ public class Operation2 {//现在是在做不同的模式
                     timer.stop();
                     newgame();
                     gameframe2.getGamepanel2().repaint();
-                    new gameoverframe().setVisible(true);
+                    gameoverframe gameoverframe = new gameoverframe();
+                    gameoverframe.score = score;
+                    gameoverframe.setVisible(true);
                 }//这个部分同样有点问题
             }
         }

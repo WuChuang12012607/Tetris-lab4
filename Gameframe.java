@@ -15,6 +15,7 @@ public class Gameframe extends JFrame {
     public Staticpanel staticpanel;
 
     Gameframe(Gamepanel gamepanel, Operation operation) {
+
         this.gamepanel = gamepanel;
         this.operation = operation;
         mainpane = getLayeredPane();
@@ -23,7 +24,7 @@ public class Gameframe extends JFrame {
         setResizable(false);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon imgic=new ImageIcon("小成品.png");
+        ImageIcon imgic=new ImageIcon("pics/小成品.png");
        JLabel jl=new JLabel(imgic);
         jl.setBounds(0,0,600,900);
         getContentPane().add(jl);
@@ -34,12 +35,12 @@ public class Gameframe extends JFrame {
         setLocationRelativeTo(null);
     }
     void setGamepanel() {
-        this.setIconImage(new ImageIcon("Tetris.png").getImage());
+        this.setIconImage(new ImageIcon("pics/Tetris.png").getImage());
         gamepanel = new Gamepanel(operation);
         mainpane.add(gamepanel);
     }
     Gamepanel getGamepanel() {
-        this.setIconImage(new ImageIcon("Tetris.png").getImage());
+        this.setIconImage(new ImageIcon("pics/Tetris.png").getImage());
         return gamepanel;
     }
 }
