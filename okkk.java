@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class okkk {
     public static void main(String[] args) throws FileNotFoundException {
-        Levelpanel levelpanel = new Levelpanel();
-        levelpanel.setVisible(true);
+       whethertosave whethertosave = new whethertosave();
+       whethertosave.setVisible(true);
 
     }
 

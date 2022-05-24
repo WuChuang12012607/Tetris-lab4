@@ -61,6 +61,7 @@ class Staticpanel3 extends  JPanel{
         JButton startpause = operation3.startstop;
         JButton returnbutton =operation3.returnbutton;
         JButton restart = operation3.over;
+        JButton restart2 = operation3.restart;
         left.setBounds(55,753,49,30);
         right.setBounds(165,753,49,30);
         dowm.setBounds(120,791,30,49);
@@ -68,6 +69,7 @@ class Staticpanel3 extends  JPanel{
         startpause.setBounds(291,692,88,48);
         returnbutton.setBounds(364,764,88,48);
         restart.setBounds(435,830,88,48);
+        restart2.setBounds(430,750,30,49);
         add(left);
         add(right);
         add(dowm);
@@ -75,6 +77,7 @@ class Staticpanel3 extends  JPanel{
         add(startpause);
         add(returnbutton);
         add(restart);
+        add(restart2);
         ImageIcon imageIcon1 = new ImageIcon("up.png"); // Icon由图片文件形成
         ImageIcon imageIcon2 = new ImageIcon("down.png");
         ImageIcon imageIcon3 = new ImageIcon("left.png");
@@ -142,9 +145,7 @@ public class Game3 {
         Gamepanel3 gamepanel3 = new Gamepanel3(operation3);
         Gameframe3 frame3 = new Gameframe3(gamepanel3, operation3);
         operation3.setGameframe(frame3);
-        frame3.setVisible(true);
-        music audioPlayWave = new music("Aldecaldos.wav");// 开音乐 音樂名
-        audioPlayWave.start();
+
         @SuppressWarnings("unused")
         int musicOpenLab = 1;
     }

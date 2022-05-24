@@ -13,6 +13,7 @@ import java.util.Random;
 
 
 public class Operation {
+
     int x;//这个位置至少为1
     int y;//这个问题需要我们解决
     Color[][] mapcolor = new Color[][]{{Color.black}};
@@ -23,6 +24,7 @@ public class Operation {
     JButton down;
     JButton startstop;
     JButton returnbutton;
+    JButton restart;
     Boolean newBegin=true;
     Shape[] Shape = new Shape[]{
             //L
@@ -93,7 +95,9 @@ public void setspeed(int speed){
         this.speed=speed;
 }
 
-
+    public void setscore(int score){
+        this.score=score;
+    }
 
 
     Operation(){
@@ -103,6 +107,7 @@ public void setspeed(int speed){
         down= new JButton();
         startstop = new JButton();
         over =new JButton();
+        restart = new JButton();
         newShape();
         //shape = new  Shape(Shape[0]);//这部分啥意思有待考虑清楚
         savemap =new int[10][20];
@@ -157,6 +162,7 @@ public void setspeed(int speed){
                 }
                 else{ timer.stop();
                 newBegin=true;
+                new pausepanel().setVisible(true);
                 }
             }
         });
@@ -178,7 +184,20 @@ public void setspeed(int speed){
                 newBegin=true;
                 gameframe.getGamepanel().repaint();
             }
-        });}
+        });
+        restart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newgame();
+                record=0;
+                setscore(0);
+                gameframe.getGamepanel().repaint();
+                newBegin=true;
+            }
+        });
+
+
+    }
 
 
 
@@ -218,7 +237,9 @@ public void setspeed(int speed){
                     timer.stop();
                     newgame();
                     gameframe.getGamepanel().repaint();
-                    new gameoverframe().setVisible(true);
+                    gameoverframe gameoverframe = new gameoverframe();
+                    gameoverframe.score = score;
+                   gameoverframe.setVisible(true);
                 }//这个部分同样有点问题
             }
         }

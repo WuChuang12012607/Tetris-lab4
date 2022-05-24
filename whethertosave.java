@@ -15,9 +15,13 @@ public class whethertosave extends JFrame {
      Container main;
      int[][] savemap;
      JPanel panel;
+     simplepanel2 simplepanel2;
      whethertosave(){
+         simplepanel2 = new simplepanel2();
+         this.setIconImage(new ImageIcon("pics/Tetris.png").getImage());
+         setTitle("Save the game");
          savemap=new int[10][20];
-         main=getContentPane();
+         main=getLayeredPane();
          setSize(500,300);
          setLocationRelativeTo(null);
          setLayout(null);
@@ -26,14 +30,17 @@ public class whethertosave extends JFrame {
          panel.setLayout(null);
          bt1 = new JButton("是");panel.add(bt1);
          bt2 = new JButton("否");panel.add(bt2);
-         add(bt1);bt1.setBounds(30,30,90,60);
+
+         main.add(simplepanel2,new Integer(0));
+
+         main.add(bt1,new Integer(1));bt1.setBounds(30,30,90,60);
          bt1.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
                  dispose();
              }
          });
-         add(bt2);bt2.setBounds(300,30,90,60);
+         main.add(bt2,new Integer(1));bt2.setBounds(300,30,90,60);
          bt2.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -60,8 +67,13 @@ public class whethertosave extends JFrame {
              }
          });
      }
-     @Override
-     public void paint(Graphics g){
-         g.drawString("是否继续游戏",70,30);
-     }
+}
+class simplepanel2 extends JPanel{
+    simplepanel2(){
+        setBounds(0,0,400,200);
+    }
+    @Override
+    public void paint(Graphics g){
+        g.drawString("是否继续游戏",70,30);
+    }
 }

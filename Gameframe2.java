@@ -18,7 +18,7 @@ public class Gameframe2 extends JFrame {
         setResizable(false);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon imgic=new ImageIcon("小成品.png");
+        ImageIcon imgic=new ImageIcon("pics/小成品.png");
         JLabel jl=new JLabel(imgic);
         jl.setBounds(0,0,600,900);
         getContentPane().add(jl);
@@ -29,12 +29,12 @@ public class Gameframe2 extends JFrame {
         setLocationRelativeTo(null);
     }
     void setGamepanel() {
-        this.setIconImage(new ImageIcon("Tetris.png").getImage());
+        this.setIconImage(new ImageIcon("pics/pics/Tetris.png").getImage());
         gamepanel2 = new Gamepanel2(operation2);
         mainpane.add(gamepanel2);
     }
     Gamepanel2 getGamepanel2() {
-        this.setIconImage(new ImageIcon("Tetris.png").getImage());
+        this.setIconImage(new ImageIcon("pics/Tetris.png").getImage());
         return gamepanel2;
     }
 }

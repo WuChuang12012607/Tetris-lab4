@@ -21,10 +21,10 @@ class Gamepanel extends JPanel{
             if(operation.tempcolor==Color.WHITE){
                 g.setColor(Color.WHITE);
                 g.fillRect((point.x+operation.x)*24,(point.y+operation.y)*24,24,24);
-             //   g.drawImage(new ImageIcon("block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
+             //   g.drawImage(new ImageIcon("pics/block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
             }else{ g.setColor(operation.tempcolor);
                 g.fillRect((point.x+operation.x)*24,(point.y+operation.y)*24,24,24);
-                g.drawImage(new ImageIcon("block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
+                g.drawImage(new ImageIcon("pics/block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
                 String temp = String.valueOf(operation.score);
                 g.setColor(Color.black);
                 g.setFont(new Font("黑体",Font.PLAIN,25));
@@ -39,7 +39,7 @@ class Gamepanel extends JPanel{
                 if(operation.savemap[j][i]!=0){
                     g.setColor(operation.color[operation.savemap[j][i]-1]);
                     g.fillRect((j)*24,(i-2)*24,24,24);
-                    g.drawImage(new ImageIcon("block3.png").getImage(),(j)*24,(i-2)*24,24,24,null);//这个部分的j，i同样值得思考！！！
+                    g.drawImage(new ImageIcon("pics/block3.png").getImage(),(j)*24,(i-2)*24,24,24,null);//这个部分的j，i同样值得思考！！！
                 }
             }
         }
@@ -72,6 +72,7 @@ class Staticpanel extends  JPanel{
         JButton startpause = operation.startstop;
         JButton returnbutton =operation.returnbutton;
         JButton restart = operation.over;
+        JButton restart2 = operation.restart;
         left.setBounds(55,753,49,30);
         right.setBounds(165,753,49,30);
         dowm.setBounds(120,791,30,49);
@@ -79,6 +80,7 @@ class Staticpanel extends  JPanel{
         startpause.setBounds(291,692,88,48);
         returnbutton.setBounds(364,764,88,48);
         restart.setBounds(435,830,88,48);
+        restart2.setBounds(430,750,30,49);
         add(left);
         add(right);
         add(dowm);
@@ -86,13 +88,14 @@ class Staticpanel extends  JPanel{
         add(startpause);
         add(returnbutton);
         add(restart);
-        ImageIcon imageIcon1 = new ImageIcon("up.png"); // Icon由图片文件形成
-        ImageIcon imageIcon2 = new ImageIcon("down.png");
-        ImageIcon imageIcon3 = new ImageIcon("left.png");
-        ImageIcon imageIcon4 = new ImageIcon("right.png");
-        ImageIcon imageIcon5 = new ImageIcon("Start_Pause.png");
-        ImageIcon imageIcon6 = new ImageIcon("返回.png");
-        ImageIcon imageIcon7 = new ImageIcon("restart.png");
+        add(restart2);
+        ImageIcon imageIcon1 = new ImageIcon("pics/up.png"); // Icon由图片文件形成
+        ImageIcon imageIcon2 = new ImageIcon("pics/down.png");
+        ImageIcon imageIcon3 = new ImageIcon("pics/left.png");
+        ImageIcon imageIcon4 = new ImageIcon("pics/right.png");
+        ImageIcon imageIcon5 = new ImageIcon("pics/Start_Pause.png");
+        ImageIcon imageIcon6 = new ImageIcon("pics/返回.png");
+        ImageIcon imageIcon7 = new ImageIcon("pics/restart.png");
         Image image1 = imageIcon1.getImage(); // 但这个图片大小可能不适合做Icon
         Image image2 = imageIcon2.getImage();
         Image image3 = imageIcon3.getImage();
@@ -161,9 +164,7 @@ public class Game{
         operation.setGameframe(frame);
         frame.setVisible(true);
 
-        music audioPlayWave = new music("Aldecaldos.wav");// 开音乐 音樂名
-        audioPlayWave.start();
-        @SuppressWarnings("unused")
+
         int musicOpenLab = 1;
     }
 }

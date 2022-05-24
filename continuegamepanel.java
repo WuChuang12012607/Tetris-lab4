@@ -20,11 +20,35 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
     JPanel panel ;
     Scanner scanner;
     int[][] savemap= new int[10][20];
+    Container main;
+
+    JButton bt0;//z这句加进去
+
+
     continuegamepanel(){
+
+
+        bt0 = new JButton("return");//这句加进去
+
+        //下面的加进去
+       bt0.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               setVisible(false);
+               Panel.username=username;
+               Panel panel = new Panel();
+               panel.setVisible(true);
+               dispose();
+           }
+       });
+
+
+        this.setIconImage(new ImageIcon("pics/Tetris.png").getImage());
+        setTitle("Tetris");
         File file = new File(username+".txt");
         File[] file2 = file.listFiles();
         panel = new JPanel();panel.setBounds(0,0,250,250);
-        setSize(250, 250);
+        setSize(400, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         panel.setLayout(new GridLayout(21,0,10,10));
@@ -82,9 +106,19 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
-        setContentPane(scrollPane);
+        JPanel panel2 = new JPanel();
+        panel2.setBounds(0,0,500,500);
+        bt0.setBounds(0,0,100,70);
+        scrollPane.setBounds(0,100,300,200);
+        main = getLayeredPane();
+
+        main.add(panel2,new Integer(0));
+        main.add(scrollPane,new Integer(1));
+        main.add(bt0,new Integer(1));
         setVisible(true);
 
     }
+
+
 
 }
