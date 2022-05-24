@@ -2,54 +2,88 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//
  class Panel extends JFrame implements  ActionListener {
-    String username;
 
-    JPanel mainpanel ;
+   public static String username;
+    Container mainpanel ;
+
+
+
     JButton bt11 ;
     JButton bt12 ;
     JButton bt13 ;
     JButton bt14 ;
     JButton bt15 ;
 
+
     public Panel() {
-        mainpanel = new JPanel();
-        setResizable(true);
+        mainpanel = getLayeredPane();
+        setResizable(false);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        ImageIcon imgic=new ImageIcon("小成品.png");
+        this.setIconImage(new ImageIcon("Tetris.png").getImage());
+        setTitle("Tetris");
+        ImageIcon imgic=new ImageIcon("backGround'.png");
         JLabel jl=new JLabel(imgic);
         jl.setBounds(0,0,600,900);
-        getContentPane().add(jl);
+        mainpanel.add(jl);
+
         bt11 = new JButton("New Game");
         bt12 = new JButton("Continue Game");
         bt13 = new JButton("Setting");
         bt14 = new JButton("Reference");
         bt15 = new JButton("Quit");
-        setSize(1110, 1008);
-        setLayout(null);
-        mainpanel.setSize(1111, 1008);
-        mainpanel.setBackground(Color.CYAN);
-        add(mainpanel);
+        setSize(810, 1000);
+
+        mainpanel.setSize(810, 1000);
+
+     /*   add(mainpanel);*/
         mainpanel.setLayout(null);
-        mainpanel.add(bt11);
-        bt11.setBounds(370, 426, 370, 88);
+        mainpanel.add(bt11,new Integer(1));
+        bt11.setBounds(295, 326, 220, 100);
         bt11.addActionListener(this);
 
-        mainpanel.add(bt12);
-        bt12.setBounds(370, 530, 370, 88);
+        mainpanel.add(bt12,new Integer(1));
+        bt12.setBounds(295, 440, 220, 100);
         bt12.addActionListener(this);
-        mainpanel.add(bt13);
-        bt13.setBounds(370, 634, 370, 88);
+        mainpanel.add(bt13,new Integer(1));
+        bt13.setBounds(295, 554, 220, 100);
         bt13.addActionListener(this);
 
-        mainpanel.add(bt14);
-        bt14.setBounds(370, 738, 370, 88);
+        mainpanel.add(bt14,new Integer(1));
+        bt14.setBounds(295, 668, 220, 100);
         bt14.addActionListener(this);
-        mainpanel.add(bt15);
-        bt15.setBounds(370, 842, 370, 88);
+        mainpanel.add(bt15,new Integer(1));
+        bt15.setBounds(295, 782, 220, 100);
+        ImageIcon imageIcon1 = new ImageIcon("newgame.png"); // Icon由图片文件形成
+        ImageIcon imageIcon2 = new ImageIcon("continue.png");
+        ImageIcon imageIcon3 = new ImageIcon("settings.png");
+        ImageIcon imageIcon4 = new ImageIcon("information.png");
+        ImageIcon imageIcon5 = new ImageIcon("quit.png");
+        Image image1 = imageIcon1.getImage(); // 但这个图片大小可能不适合做Icon
+        Image image2 = imageIcon2.getImage();
+        Image image3 = imageIcon3.getImage();
+        Image image4 = imageIcon4.getImage();
+        Image image5 = imageIcon5.getImage();
+        Image smallImage1 = image1.getScaledInstance(230,100,Image.SCALE_FAST);
+        Image smallImage2 = image2.getScaledInstance(230,100,Image.SCALE_FAST) ;
+        Image smallImage3 = image3.getScaledInstance(230,100,Image.SCALE_FAST);
+        Image smallImage4 = image4.getScaledInstance(230,100,Image.SCALE_FAST) ;
+        Image smallImage5 = image5.getScaledInstance(230,100,Image.SCALE_FAST);
+        // 再由修改后的Image来生成合适的Icon
+        ImageIcon smallIcon1 = new ImageIcon(smallImage1);
+        ImageIcon smallIcon2 = new ImageIcon(smallImage2);
+        ImageIcon smallIcon3 = new ImageIcon(smallImage3);
+        ImageIcon smallIcon4 = new ImageIcon(smallImage4);
+        ImageIcon smallIcon5 = new ImageIcon(smallImage5);
+        // 最后设置它为按钮的图片
+        bt11.setIcon(smallIcon1);
+        bt12.setIcon(smallIcon2);
+        bt13.setIcon(smallIcon3);
+        bt14.setIcon(smallIcon4);
+        bt15.setIcon(smallIcon5);
+
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,33 +92,30 @@ import java.awt.event.ActionListener;
     @Override
     public void actionPerformed(ActionEvent e) {
 
+
         if(e.getSource()==bt14){
-           setVisible(false);
+            setVisible(false);
             new helpPanel().setVisible(true);
             dispose();
         }
         else if(e.getSource()==bt13){
-           setVisible(false);
+            setVisible(false);
             new settingpanel().setVisible(true);
             dispose();
         }else if(e.getSource()==bt11){
             setVisible(false);
-            Operation operation = new Operation();
-            operation.username=username;
-            Gamepanel gamepanel = new Gamepanel(operation);
-            Scorepanel scorepanel = new Scorepanel(operation);
-            Gameframe frame = new Gameframe(gamepanel,operation,scorepanel);
-            operation.setGameframe(frame);
-            frame.setVisible(true);
-            frame.add(scorepanel);
+            Levelpanel levelpanel = new Levelpanel();
+            levelpanel.setVisible(true);
+            levelpanel.username=username;
             dispose();
         }else if(e.getSource()==bt12){
-            setVisible(false);
-            continuegamepanel.username=username;
+            setVisible(false);continuegamepanel.username=username;
             continuegamepanel continuegamepanel2 = new continuegamepanel();
+
             continuegamepanel2.setVisible(true);
             dispose();
         }
+
 
     }
 }
