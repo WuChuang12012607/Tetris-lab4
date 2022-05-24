@@ -2,42 +2,41 @@ import javax.swing.*;
 import java.awt.*;
 
 
-
-class Gamepanel extends JPanel{
-
-
-    Operation operation;
-
-    Gamepanel(Operation operation){
+class Gamepanel2 extends JPanel {
 
 
-        this.operation=operation;
+    Operation2 operation2;
+
+    Gamepanel2(Operation2 operation2){
+
+
+        this.operation2=operation2;
         setOpaque(false);
         setBounds(111,85,376,537);
     }
     @Override
     public void paintComponent(Graphics g){
-        for(Point point : operation.shape.points){
-            if(operation.tempcolor==Color.WHITE){
+        for(Point point : operation2.shape.points){
+            if(operation2.tempcolor==Color.WHITE){
                 g.setColor(Color.WHITE);
-                g.fillRect((point.x+operation.x)*24,(point.y+operation.y)*24,24,24);
-             //   g.drawImage(new ImageIcon("pics/block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
-            }else{ g.setColor(operation.tempcolor);
-                g.fillRect((point.x+operation.x)*24,(point.y+operation.y)*24,24,24);
-                g.drawImage(new ImageIcon("pics/block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
-                String temp = String.valueOf(operation.score);
+                g.fillRect((point.x+operation2.x)*24,(point.y+operation2.y)*24,24,24);
+                //   g.drawImage(new ImageIcon("block3.png").getImage(),(point.x+operation.x)*24,(point.y+operation.y)*24,24,24,null);
+            }else{ g.setColor(operation2.tempcolor);
+                g.fillRect((point.x+operation2.x)*24,(point.y+operation2.y)*24,24,24);
+                g.drawImage(new ImageIcon("pics/block3.png").getImage(),(point.x+operation2.x)*24,(point.y+operation2.y)*24,24,24,null);
+                String temp = String.valueOf(operation2.score);
                 g.setColor(Color.black);
                 g.setFont(new Font("黑体",Font.PLAIN,25));
                 g.drawString(temp,300,70);
             }
         }
-        for(Point point : operation.preshape.points){
+        for(Point point : operation2.preshape.points){
             g.fillRect((point.x+3)*24,(point.y+20)*24,24,24);}
 
         for(int i =19;i>=2;i--){
             for(int j=0;j<10;j++){
-                if(operation.savemap[j][i]!=0){
-                    g.setColor(operation.color[operation.savemap[j][i]-1]);
+                if(operation2.savemap[j][i]!=0){
+                    g.setColor(operation2.color[operation2.savemap[j][i]-1]);
                     g.fillRect((j)*24,(i-2)*24,24,24);
                     g.drawImage(new ImageIcon("pics/block3.png").getImage(),(j)*24,(i-2)*24,24,24,null);//这个部分的j，i同样值得思考！！！
                 }
@@ -46,33 +45,35 @@ class Gamepanel extends JPanel{
 
     }
 }
-class Staticpanel extends  JPanel{
-
-    Operation operation;
-
-
-    Staticpanel(Operation operation){
-
-        this.operation =operation;
-    setBounds(0,0,600,900);
 
 
 
+class Staticpanel2 extends  JPanel{
 
+    Operation2 operation2;
+
+
+    Staticpanel2(Operation2 operation2){
+        this.operation2 =operation2;
+        setBounds(0,0,615,930);
 
 
 
 
-    setLayout(null);
 
-        JButton left = operation.left;
-        JButton right = operation.right;
-        JButton dowm =operation.down;
-        JButton rotation = operation.rotation;
-        JButton startpause = operation.startstop;
-        JButton returnbutton =operation.returnbutton;
-        JButton restart = operation.over;
-        JButton restart2 = operation.restart;
+
+
+
+        setLayout(null);
+
+        JButton left = operation2.left;
+        JButton right = operation2.right;
+        JButton dowm =operation2.down;
+        JButton rotation = operation2.rotation;
+        JButton startpause = operation2.startstop;
+        JButton returnbutton =operation2.returnbutton;
+        JButton restart = operation2.over;
+        JButton restart2 = operation2.restart;
         left.setBounds(55,753,49,30);
         right.setBounds(165,753,49,30);
         dowm.setBounds(120,791,30,49);
@@ -80,7 +81,7 @@ class Staticpanel extends  JPanel{
         startpause.setBounds(291,692,88,48);
         returnbutton.setBounds(364,764,88,48);
         restart.setBounds(435,830,88,48);
-        restart2.setBounds(430,750,30,49);
+        restart2.setBounds(520,750,48,48);
         add(left);
         add(right);
         add(dowm);
@@ -95,7 +96,7 @@ class Staticpanel extends  JPanel{
         ImageIcon imageIcon4 = new ImageIcon("pics/right.png");
         ImageIcon imageIcon5 = new ImageIcon("pics/Start_Pause.png");
         ImageIcon imageIcon6 = new ImageIcon("pics/返回.png");
-        ImageIcon imageIcon7 = new ImageIcon("pics/restart.png");
+        ImageIcon imageIcon7 = new ImageIcon("pics/quit.png");
         Image image1 = imageIcon1.getImage(); // 但这个图片大小可能不适合做Icon
         Image image2 = imageIcon2.getImage();
         Image image3 = imageIcon3.getImage();
@@ -126,16 +127,21 @@ class Staticpanel extends  JPanel{
         startpause.setIcon(smallIcon5);
         returnbutton.setIcon(smallIcon6);
         restart.setIcon(smallIcon7);
-
+        ImageIcon imageIcon8 = new ImageIcon("pics/restart.png");
+        Image image8 = imageIcon8.getImage();
+        add(restart2);
+        Image smallImage8 = image8.getScaledInstance(48,48,Image.SCALE_FAST);
+        ImageIcon smallIcon8 = new ImageIcon(smallImage8);
+        restart2.setIcon(smallIcon8);
         this.add(left);
-}
-@Override
+    }
+    @Override
     public void paintComponent(Graphics g){
         g.setColor(new Color(0,0,0,30));
-       g.fillRect(111,520,200,102);//下一个框
-       g.fillRect(355,187,130,330);//荣誉榜
+        g.fillRect(111,520,200,102);//下一个框
+        g.fillRect(355,187,130,330);//荣誉榜
         g.fillRect(111,85,240,432);//游戏运行框
-    g.fillRect(313,520,174,102);//速度框
+        g.fillRect(313,520,174,102);//速度框
         g.setColor(new Color(2,2,2,30));
         g.fillRect(355,85,130,100);//得分框
 
@@ -147,24 +153,23 @@ class Staticpanel extends  JPanel{
         g.drawString("得分：",367,120);//得分位置
         g.drawString("下一个",111,550);//下一个位置
         g.drawString("荣誉榜：",367,222);//荣誉榜位置
-    g.drawString("速度：",325,555);//速度
+        g.drawString("速度：",325,555);//速度
     }
 }
 
 
-
-public class Game{
+public class Game2{
     public static void main(String[] args) {
 
 
-        Operation operation = new Operation();
-        Gamepanel gamepanel = new Gamepanel(operation);
+        Operation2 operation2 = new Operation2();
+        Gamepanel2 gamepanel2 = new Gamepanel2(operation2);
 
-        Gameframe frame = new Gameframe(gamepanel,operation);
-        operation.setGameframe(frame);
-        frame.setVisible(true);
+        Gameframe2 frame2 = new Gameframe2(gamepanel2,operation2);
+        operation2.setGameframe(frame2);
+        frame2.setVisible(true);
 
-
+        @SuppressWarnings("unused")
         int musicOpenLab = 1;
     }
 }

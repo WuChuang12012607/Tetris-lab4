@@ -11,13 +11,11 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 
-
-public class Operation {
-
+public class Operation3 {//现在是在做不同的模式
     int x;//这个位置至少为1
     int y;//这个问题需要我们解决
     Color[][] mapcolor = new Color[][]{{Color.black}};
-    Gameframe gameframe;
+    Gameframe3 gameframe3;
     JButton left;
     JButton right;
     JButton rotation;
@@ -54,13 +52,41 @@ public class Operation {
             new Shape(new int[]{-1,0,0,1},new int[]{0,0,1,0}),
             new Shape(new int[]{0,0,-1,0},new int[]{-1,0,0,1}),
             //田
-            new Shape(new int[]{0,0,1,1},new int[]{0,1,0,1})
+            new Shape(new int[]{0,0,1,1},new int[]{0,1,0,1}),
+            //这是后加的
+            //十
+            new Shape(new int[]{-1,0,0,0,1},new int[]{0,0,1,-1,0}),
+            //|--
+            new Shape(new int[]{0,0,0,1,2},new int[]{1,0,-1,0,0}),
+            new Shape(new int[]{-1,0,1,0,0},new int[]{0,0,0,1,2}),
+            new Shape(new int[]{-2,-1,0,0,0},new int[]{0,0,0,1,-1}),
+            new Shape(new int[]{-1,0,0,0,1},new int[]{0,0,-1,-2,0}),
+            //凹
+            new Shape(new int[]{0,0,0,1,1},new int[]{0,1,-1,1,-1}),
+            new Shape(new int[]{-1,-1,0,1,1},new int[]{0,-1,0,-1,0}),
+            new Shape(new int[]{-1,0,0,0,-1},new int[]{-1,-1,0,1,1}),
+            new Shape(new int[]{-1,-1,0,1,1},new int[]{1,0,0,0,1}),
+            //2
+            new Shape(new int[]{-1,0,0,0,1}, new int[]{-1,-1,0,1,1}),
+            new Shape(new int[]{-1,-1,0,1,1}, new int[]{1,0,0,0,-1}),
+            //5
+            new Shape(new int[]{1,0,0,0,-1}, new int[]{-1,-1,0,1,1}),
+            new Shape(new int[]{-1,-1,0,1,1},new int[]{-1,0,0,0,1}),
+            //L
+            new Shape(new int[]{0,0,0,0,1},new int[]{-2,-1,0,1,0}),
+            new Shape(new int[]{-2,-1,0,1,0},new int[]{0,0,0,0,-1}),
+            new Shape(new int[]{0,0,0,0,-1},new int[]{-1,0,1,2,0}),
+            new Shape(new int[]{-1,0,1,2,0}, new int[]{0,0,0,0,1}),
+            //differ from latter
+            new Shape(new int[]{-2,-1,0,1,0}, new int[]{0,0,0,0,1}),
+            new Shape(new int[]{0,0,0,0,1}, new int[]{-1,0,1,2,0}),
+            new Shape(new int[]{-1,0,1,2,0}, new int[]{0,0,0,0,-1}),
+            new Shape(new int[]{0,0,0,0,-1}, new int[]{-2,-1,0,1,0})
 
-
-            };
+    };
     public  Shape shape;
     public int[][] savemap;
-    public int score;
+    public static int score;
     public Color[] color = new Color[]{Color.green, Color.red, Color.orange, Color.blue, Color.cyan, Color.yellow, Color.magenta, Color.gray};
     public Color tempcolor;
 
@@ -71,43 +97,36 @@ public class Operation {
     Shape tempshape;
     Random random= new Random();
     public String username;
-   static int record =0;
-
-   public int speed;
+    static int record =0;
+    int speed=100;
+    public void setscore(int score){
+        this.score=score;
+    }
 
     public void newShape(){
-        speed=1;
-        this.x=random.nextInt(6)+2;
+        this.x=random.nextInt(5)+3;
         this.y=-1;
         shape=preshape;
-        int a2= random.nextInt(21);
+        int a2= random.nextInt(42);
         tempshape=preshape;
         int b = random.nextInt(8);
         tempcolor= color[b];
-        if(record==0){int a = random.nextInt(21);
+        if(record==0){int a = random.nextInt(42);
             shape=new Shape(Shape[a]);
         }else{
             shape=tempshape;
         } preshape = new Shape(Shape[a2]);
         record++;
     }
-public void setspeed(int speed){
-        this.speed=speed;
-}
 
-    public void setscore(int score){
-        this.score=score;
-    }
-
-
-    Operation(){
+    Operation3(){
+        restart = new JButton();
         left= new JButton();
         right = new JButton();
         rotation= new JButton();
         down= new JButton();
         startstop = new JButton();
         over =new JButton();
-        restart = new JButton();
         newShape();
         //shape = new  Shape(Shape[0]);//这部分啥意思有待考虑清楚
         savemap =new int[10][20];
@@ -115,92 +134,90 @@ public void setspeed(int speed){
         left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                left();gameframe.requestFocus();
-                gameframe.getGamepanel().repaint();
+                left();gameframe3.requestFocus();
+                gameframe3.getGamepanel3().repaint();
             }
         });
         right.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                right();gameframe.requestFocus();
-                gameframe.getGamepanel().repaint();
+                right();gameframe3.requestFocus();
+                gameframe3.getGamepanel3().repaint();
             }
         });
         down.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dowm();gameframe.requestFocus();
-                gameframe.getGamepanel().repaint();
+                dowm();gameframe3.requestFocus();
+                gameframe3.getGamepanel3().repaint();
             }
         });
         rotation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                turn();gameframe.requestFocus();
-                gameframe.getGamepanel().repaint();
+                turn();gameframe3.requestFocus();
+                gameframe3.getGamepanel3().repaint();
             }
         });
         returnbutton = new JButton();
         returnbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameframe.requestFocus();
-                gameframe.setVisible(false);gameframe.dispose();
+                gameframe3.requestFocus();
+                gameframe3.setVisible(false);gameframe3.dispose();
                 Levelpanel.username=username;
-               Levelpanel levelpanel = new Levelpanel();
+                Levelpanel levelpanel = new Levelpanel();
                 levelpanel.username=username;
                 levelpanel.setVisible(true);
+
             }
         });
         startstop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameframe.requestFocus();
+                gameframe3.requestFocus();
                 if(newBegin==true){
                     timer.start();
                     newBegin=false;
                 }
                 else{ timer.stop();
-                newBegin=true;
-                new pausepanel().setVisible(true);
+                    newBegin=true;
                 }
             }
         });
         over.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameframe.requestFocus();
+                gameframe3.requestFocus();
                 timer.stop();
-                whethertosave whethertosave = new whethertosave();
+                /*whethertosave whethertosave = new whethertosave();
                 whethertosave.username=username;
                 for(int i=0;i<savemap.length;i++){
                     for (int j=0;j<savemap[0].length;j++){
                         whethertosave.savemap[i][j]=savemap[i][j];
                     }
-                }
+                }whethertosave.setVisible(true);*/
                 newgame();
-                whethertosave.setVisible(true);
                 record=0;
                 newBegin=true;
-                gameframe.getGamepanel().repaint();
+                gameoverframe gameoverframe = new gameoverframe();
+                gameoverframe.score = score;
+                gameoverframe.setVisible(true);
+                gameframe3.getGamepanel3().repaint();
             }
         });
         restart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newgame();
+                canju();
                 record=0;
                 setscore(0);
-                gameframe.getGamepanel().repaint();
+                gameframe3.getGamepanel3().repaint();
                 newBegin=true;
             }
         });
 
-
     }
-
-
-
     public void left(){
         boolean checksol = true;
         for(Point point :shape.points){
@@ -221,7 +238,6 @@ public void setspeed(int speed){
     }
     //savecolor
     public void dowm(){
-
         boolean checksol = true;
         for(Point point :shape.points){
             if( point.y+y+1>17  ||  savemap[point.x+x][point.y+y+2+1]!=0){
@@ -236,10 +252,10 @@ public void setspeed(int speed){
                 if(Gameover()==true){
                     timer.stop();
                     newgame();
-                    gameframe.getGamepanel().repaint();
+                    gameframe3.getGamepanel3().repaint();
                     gameoverframe gameoverframe = new gameoverframe();
                     gameoverframe.score = score;
-                   gameoverframe.setVisible(true);
+                    gameoverframe.setVisible(true);
                 }//这个部分同样有点问题
             }
         }
@@ -262,7 +278,7 @@ public void setspeed(int speed){
             checkxaxis=-point.y;
             checkyaxis=point.x;
             if(checkxaxis+x>9 || checkxaxis+x<0 ){
-             return;
+                return;
             }
             if(checkyaxis+y >17){ return;}
             if (savemap[checkxaxis+x][checkyaxis+y+2]!=0){
@@ -276,24 +292,24 @@ public void setspeed(int speed){
     }
     int[] needtodelete = new int[20];//这个部分需要改进
     boolean testdeletemap(){
-    boolean judge = false;
-    boolean checkempty = false;
-    for(int i=19;i>=2;i--){
-        judge=false;
-        for(int j=0;j<10;j++){
-            if(savemap[j][i]==0){
-                judge=true;
-                break;
+        boolean judge = false;
+        boolean checkempty = false;
+        for(int i=19;i>=2;i--){
+            judge=false;
+            for(int j=0;j<10;j++){
+                if(savemap[j][i]==0){
+                    judge=true;
+                    break;
+                }
+            }
+            if(!judge){
+                checkempty=true;
+                needtodelete[i-1]=needtodelete[i]+1;
+            } else{
+                needtodelete[i-1]=needtodelete[i];
             }
         }
-          if(!judge){
-              checkempty=true;
-              needtodelete[i-1]=needtodelete[i]+1;
-          } else{
-              needtodelete[i-1]=needtodelete[i];
-          }
-    }
-    return checkempty;
+        return checkempty;
     }
     void deletemap(){
         for(int i=19;i>=2;i--) {
@@ -309,35 +325,32 @@ public void setspeed(int speed){
         }else if (needtodelete[1] > 1) {
             this.score = score + 120*needtodelete[1];//同样
         }
-        }
-
-    Timer timer = new Timer(300, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dowm();
-                    gameframe.getGamepanel().repaint();
-                }
-            });
-
-    public void setScorepanel(Gameframe gameframe){
-        this.gameframe=gameframe;
-
     }
-    public void setGameframe(Gameframe gameframe){
-        this.gameframe =gameframe;
-        gameframe.setFocusable(true);
-        gameframe.requestFocus();
-        this.gameframe.addKeyListener(new KeyListener() {
+
+    Timer timer = new Timer(speed, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dowm();
+            gameframe3.getGamepanel3().repaint();
+        }
+    });
+
+
+    public void setGameframe(Gameframe3 gameframe3){
+        this.gameframe3 =gameframe3;
+        gameframe3.setFocusable(true);
+        gameframe3.requestFocus();
+        this.gameframe3.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==KeyEvent.VK_RIGHT){ right(); gameframe.getGamepanel().repaint();}
-                if(e.getKeyCode()==KeyEvent.VK_LEFT){ left(); gameframe.getGamepanel().repaint();}
-                if(e.getKeyCode()==KeyEvent.VK_DOWN){ dowm(); gameframe.getGamepanel().repaint();}
-                if(e.getKeyCode()==KeyEvent.VK_UP){ turn(); gameframe.getGamepanel().repaint();}
+                if(e.getKeyCode()==KeyEvent.VK_RIGHT){ right(); gameframe3.getGamepanel3().repaint();}
+                if(e.getKeyCode()==KeyEvent.VK_LEFT){ left(); gameframe3.getGamepanel3().repaint();}
+                if(e.getKeyCode()==KeyEvent.VK_DOWN){ dowm(); gameframe3.getGamepanel3().repaint();}
+                if(e.getKeyCode()==KeyEvent.VK_UP){ turn(); gameframe3.getGamepanel3().repaint();}
             }
 
             @Override
@@ -373,6 +386,23 @@ public void setspeed(int speed){
         }
         printWriter.close();
     }
+    void canju(){
+        for(int i=17;i<=19;i++) {
+            int R=new Random().nextInt(9);
+            int Q=new Random().nextInt(9);
+            int W=new Random().nextInt(9);
+            for(int h=0;h<10;h++){
+                if(h!=R && h!=Q && h!=W){
+                    savemap[h][i]=2;
+                }else{
+                    savemap[h][i]=0;
+
+                }
+            }
+
+        }
+        return ;}
+
     public void newgame() {
         for (int i = 0; i < savemap.length; i++) {
             for (int j = 0; j < savemap[0].length; j++) {
@@ -381,37 +411,6 @@ public void setspeed(int speed){
         }
         shape=Shape[0];
         tempcolor=Color.WHITE;
-    }
+    }}
 
 //这部分有借鉴，用到了points这个类
-}
-
-class Shape{
-    Point[] points;
-    int l ;
-    int[] xs;
-    int[] ys;
-    Shape(int[]xs, int[] ys){
-        this.l = xs.length;
-        this.xs=xs;
-        this.ys=ys;
-        points = new Point[l];
-       for(int i=0;i< l;i++){
-           points[i] = new Point(xs[i],ys[i] );
-       }
-    }
-    public int getxsl(){
-        return xs.length;
-    }
-    public int getysl(){
-        return ys.length;
-    }
-
-    Shape(Shape shape){
-        points = new Point[shape.getxsl()];
-       for(int i =0;i<shape.getxsl();i++){
-           points[i]=new Point(shape.points[i].x,shape.points[i].y);
-       }
-    }
-
-}

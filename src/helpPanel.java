@@ -14,7 +14,7 @@ class helpPanel extends JFrame implements ActionListener {
     JButton bt23 = new JButton("Introduction");
 
     JTextArea gamehelp = new JTextArea("Tetris is a computer game created by Alexey Pazhitnov in the 1980s. The objective of Tetris is that the player is given a sequence of tetromino pieces that they must pack into a rectangular game board Once an entire row is filled up, it is cleared and the pieces above are lowered by one row.", 5,5 );
-    JTextArea introductionforauthor = new JTextArea("The author is a fucking brilliant smart guy.");
+    JTextArea introductionforauthor = new JTextArea("         Yi Ning 12012808"+"                Wu Chuang 12012607");
 
 
     public  helpPanel(){

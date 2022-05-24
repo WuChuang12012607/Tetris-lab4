@@ -60,7 +60,7 @@ public class Operation {
             };
     public  Shape shape;
     public int[][] savemap;
-    public int score;
+    public static int score;
     public Color[] color = new Color[]{Color.green, Color.red, Color.orange, Color.blue, Color.cyan, Color.yellow, Color.magenta, Color.gray};
     public Color tempcolor;
 
@@ -162,7 +162,6 @@ public void setspeed(int speed){
                 }
                 else{ timer.stop();
                 newBegin=true;
-                new pausepanel().setVisible(true);
                 }
             }
         });

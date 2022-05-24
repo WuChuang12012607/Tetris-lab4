@@ -50,17 +50,6 @@ import java.awt.event.ActionListener;
         bt14.addActionListener(this);
         mainpanel.add(bt15,new Integer(1));
         bt15.setBounds(295, 668, 220, 100);
-
-
-
-
-        bt15.addActionListener(this);//把这句加进去，然后quit才有用
-
-
-
-
-
-
         ImageIcon imageIcon1 = new ImageIcon("pics/newgame.png"); // Icon由图片文件形成
         ImageIcon imageIcon2 = new ImageIcon("pics/continue.png");
 
@@ -94,6 +83,8 @@ import java.awt.event.ActionListener;
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
         if(e.getSource()==bt14){
             setVisible(false);
             new helpPanel().setVisible(true);
@@ -108,10 +99,10 @@ import java.awt.event.ActionListener;
         }else if(e.getSource()==bt12){
             setVisible(false);continuegamepanel.username=username;
             continuegamepanel continuegamepanel2 = new continuegamepanel();
+
             continuegamepanel2.setVisible(true);
             dispose();
         }else if(e.getSource()==bt15){
-            System.exit(0);
             dispose();
         }
 

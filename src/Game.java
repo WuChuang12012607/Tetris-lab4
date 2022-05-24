@@ -71,31 +71,32 @@ class Staticpanel extends  JPanel{
         JButton rotation = operation.rotation;
         JButton startpause = operation.startstop;
         JButton returnbutton =operation.returnbutton;
-        JButton restart = operation.over;
-        JButton restart2 = operation.restart;
+        JButton quit = operation.over;
+        JButton restart = operation.restart;
         left.setBounds(55,753,49,30);
         right.setBounds(165,753,49,30);
         dowm.setBounds(120,791,30,49);
         rotation.setBounds(120,694,30,49);
         startpause.setBounds(291,692,88,48);
         returnbutton.setBounds(364,764,88,48);
-        restart.setBounds(435,830,88,48);
-        restart2.setBounds(430,750,30,49);
+        quit.setBounds(435,830,88,48);
+        restart.setBounds(520,750,48,48);
         add(left);
         add(right);
         add(dowm);
         add(rotation);
         add(startpause);
         add(returnbutton);
+        add(quit);
         add(restart);
-        add(restart2);
         ImageIcon imageIcon1 = new ImageIcon("pics/up.png"); // Icon由图片文件形成
         ImageIcon imageIcon2 = new ImageIcon("pics/down.png");
         ImageIcon imageIcon3 = new ImageIcon("pics/left.png");
         ImageIcon imageIcon4 = new ImageIcon("pics/right.png");
         ImageIcon imageIcon5 = new ImageIcon("pics/Start_Pause.png");
         ImageIcon imageIcon6 = new ImageIcon("pics/返回.png");
-        ImageIcon imageIcon7 = new ImageIcon("pics/restart.png");
+        ImageIcon imageIcon7 = new ImageIcon("pics/quit.png");
+        ImageIcon imageIcon8 = new ImageIcon("pics/restart.png");
         Image image1 = imageIcon1.getImage(); // 但这个图片大小可能不适合做Icon
         Image image2 = imageIcon2.getImage();
         Image image3 = imageIcon3.getImage();
@@ -103,6 +104,7 @@ class Staticpanel extends  JPanel{
         Image image5 = imageIcon5.getImage();
         Image image6 = imageIcon6.getImage();
         Image image7 = imageIcon7.getImage();
+        Image image8 = imageIcon8.getImage();
         Image smallImage1 = image1.getScaledInstance(30,49,Image.SCALE_FAST);
         Image smallImage2 = image2.getScaledInstance(30,49,Image.SCALE_FAST) ;
         Image smallImage3 = image3.getScaledInstance(49,30,Image.SCALE_FAST);
@@ -110,6 +112,7 @@ class Staticpanel extends  JPanel{
         Image smallImage5 = image5.getScaledInstance(88,48,Image.SCALE_FAST);
         Image smallImage6 = image6.getScaledInstance(88,48,Image.SCALE_FAST);
         Image smallImage7 = image7.getScaledInstance(88,48,Image.SCALE_FAST);
+        Image smallImage8 = image8.getScaledInstance(48,48,Image.SCALE_FAST);
         // 再由修改后的Image来生成合适的Icon
         ImageIcon smallIcon1 = new ImageIcon(smallImage1);
         ImageIcon smallIcon2 = new ImageIcon(smallImage2);
@@ -118,6 +121,7 @@ class Staticpanel extends  JPanel{
         ImageIcon smallIcon5 = new ImageIcon(smallImage5);
         ImageIcon smallIcon6 = new ImageIcon(smallImage6);
         ImageIcon smallIcon7 = new ImageIcon(smallImage7);
+        ImageIcon smallIcon8 = new ImageIcon(smallImage8);
         // 最后设置它为按钮的图片
         rotation.setIcon(smallIcon1);
         dowm.setIcon(smallIcon2);
@@ -125,7 +129,8 @@ class Staticpanel extends  JPanel{
         right.setIcon(smallIcon4);
         startpause.setIcon(smallIcon5);
         returnbutton.setIcon(smallIcon6);
-        restart.setIcon(smallIcon7);
+        quit.setIcon(smallIcon7);
+        restart.setIcon(smallIcon8);
 
         this.add(left);
 }
