@@ -86,7 +86,7 @@ public class Operation3 {//现在是在做不同的模式
     };
     public  Shape shape;
     public int[][] savemap;
-    public static int score;
+    public  static int  score;
     public Color[] color = new Color[]{Color.green, Color.red, Color.orange, Color.blue, Color.cyan, Color.yellow, Color.magenta, Color.gray};
     public Color tempcolor;
 
@@ -180,7 +180,7 @@ public class Operation3 {//现在是在做不同的模式
                     timer.start();
                     newBegin=false;
                 }
-                else{ timer.stop();
+                else{ timer.stop();new pausepanel().setVisible(true);
                     newBegin=true;
                 }
             }

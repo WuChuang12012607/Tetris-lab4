@@ -179,7 +179,7 @@ public class Operation2 {//现在是在做不同的模式
                     timer.start();
                     newBegin=false;
                 }
-                else{ timer.stop();
+                else{ timer.stop();new pausepanel().setVisible(true);
                     newBegin=true;
                 }
             }
