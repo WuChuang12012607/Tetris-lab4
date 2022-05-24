@@ -19,8 +19,21 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
     JButton[] bt;
     JPanel panel ;
     Scanner scanner;
+    Container main;
+    JButton bt0;
     int[][] savemap= new int[10][20];
     continuegamepanel(){
+        bt0 = new JButton("return");
+        bt0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Panel.username=username;
+                Panel panel = new Panel();
+                panel.setVisible(true);
+                dispose();
+            }
+        });
         this.setIconImage(new ImageIcon("pics/Tetris.png").getImage());
         setTitle("Tetris");
         setTitle("是否继续游戏？");
@@ -35,7 +48,7 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
         for(int i=0;i<bt.length;i++){
             int k=i+1;
             bt[i]=new JButton(""+k);
-            bt[i].setBounds(10,20*i,180,70);
+            bt[i].setBounds(10,20*i,180,20);
             panel.add(bt[i]);
             int j = i;
             bt[i].addActionListener(new ActionListener() {
@@ -85,6 +98,19 @@ public class continuegamepanel extends JFrame {//我们在这个部分来讨论�
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
+        JPanel panel2 = new JPanel();
+        panel2.setBounds(0,0,500,500);
+        bt0.setBounds(0, 20*bt.length,100,20);
+        scrollPane.setBounds(0,100,300,200);
+
+        main = getLayeredPane();
+        setContentPane(scrollPane);
+        for(int i=0;i<bt.length;i++){
+           main.add(bt[i],new Integer(1));
+        }
+        main.add(panel2,new Integer(0));
+        main.add(scrollPane,new Integer(1));
+        main.add(bt0,new Integer(1));
         setContentPane(scrollPane);
         setVisible(true);
 
